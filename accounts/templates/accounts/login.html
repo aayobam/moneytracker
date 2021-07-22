@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+<title>{% block head_title %} User Login {% endblock %}</title>
+
+
+{% block content %}
+    <main role="main" class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <legend class="border-bottom md-4">User Login</legend>
+                    
+                        {{ login_form|crispy }}
+                        {{form.errors}}
+                    <div class="form-group pt-2 pb-2 col-md-3">
+                        <input type="submit" value="Sign in" class="btn btn-outline-info">
+                    </div>
+                    <div class="border-top pt-3">
+                    <small class="text-muted">
+                        Need an Account ? <a class="ml-2" href="{% url 'account-signup' %}">Sign Up</a>
+                    </small>
+                    <small class="text-muted">
+                        or  <a class="ml-2" href="{% url 'reset_password' %}">Reset Password</a>
+                    </small>
+                </form>
+            </div>
+        </div>
+    </main>
+
+        
+    </div>
+{% endblock content %}

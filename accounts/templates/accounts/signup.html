@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block head_title %} User Registeration {% endblock %}
+
+
+ 
+
+{% block content %}
+
+    <main role="main" class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+               <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <legend class="border-bottom">Join Today</legend>
+                        {{ signup_form|crispy}}
+                        {{form.errors}}
+                    <div class="form-group pt-2 pb-2 col-md-3">
+                        <input type="submit" value="Sign Up" class="btn btn-outline-info">
+                    </div>
+                    <small class="text-muted mt-4 col-md-9">
+                        Already have an Account ? <a class="ml-2" href="{% url 'account-login' %}">Sign In</a>
+                    </small>
+                </form>
+            </div>
+        </div>
+    </main>
+{% endblock content %}

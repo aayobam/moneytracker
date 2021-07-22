@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %} 
+    <div class="row justify-content-center">
+        <div class="col-md">
+            <div class="col-md">
+
+                <div class="card text-center text-black mb-3">
+                    <div class="card-header">
+                        <h5 class="card-title">Budget(₦)</h5>
+                    </div>
+
+                    <div class="card-body">
+                        <h1 class="card-title">₦{{budget.amount}}</h1>
+                        <small class="">Added On: {{budget.created_at}}</small>
+                    </div>
+                </div>
+
+            </div>
+             <div style="">
+                <a href="{% url 'budget_list' %}" class="btn btn-warning w-100">Back to Home</a>
+            </div>
+        </div>
+       
+        
+        <div class="col">
+            <div class="col-md">
+                <div class="card text-center text-black mb-3">
+                    <div class="card-header">
+                        <h5 class="card-title">Budget Balance(₦)</h5>
+                    </div>
+                    <div class="card-body">
+                        {% if budget_balance > 0 %}
+                            <h1 class="card-title text-success font-weight-bold">₦{{budget_balance}}</h1>
+                        {% elif budget_balance == 0 %}
+                            <h1 class="card-title text-warning font-weight-bold">₦{{budget_balance}}</h1>
+                        {% else %}
+                            <h1 class="card-title text-danger font-weight-bold">₦{{budget_balance}}</h1>
+                        {% endif %}
+                            <small class="">As of:  {{budget.created_at}}</small>
+                    </div>
+        
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="col-md">
+                <div class="card text-center text-black mb-3">
+        
+                    <div class="card-header">
+                        <h5 class="card-title">Total Expenses(₦)</h5>
+                    </div>
+        
+                    <div class="card-body">
+                        <h1 class="card-title">₦{{total_expenses}}</h1>
+                        <small class="">Last Transaction Date: {{transactions.created_at}}</small>
+                    </div>
+                </div>
+                <div style="">
+                    <a href="{% url 'create_transaction' %}" class="btn btn-warning w-100">Add expenses</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if transactions %}
+    <br>
+    <h2>Transaction History</h2>
+    <div class="card card-body">
+        <table class="table table-sm">
+            <th class="">Category</th>
+            <th class="">Amount(₦)</th>
+            <th class="">Payment Mode</th>
+            <th class="">Transaction Type</th>
+            <th class="">Description</th>
+            <th class="">Transaction Date</th>
+            <th class="">Edit Expense</th>
+            <th class="">Remove Expense</th>
+            {% for transaction in transactions %}
+            <tr class="">
+                <td class="">{{ transaction.category }}</td>
+                <td class="">-₦{{ transaction.amount }}</td>
+                <td class="">{{ transaction.payment_type }}</td>
+                <td class="">{{ transaction.transaction_type }}</td>
+                <td class="">{{ transaction.description }}</td>
+                <td class="">{{ transaction.transaction_date|date }}</td>
+                <td class=""><a href="{% url 'update_transaction' transaction.pk %}" class="btn btn-warning btn-sm">Update Expense</a></td>
+                <td class=""><a href="{% url 'delete_transaction' transaction.pk %}" class="btn btn-danger btn-sm">Delete Expense</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% else %}
+         <main class="row justify-contetn-center" style="margin:60px 0px 0px 300px;">
+            <div class="col-md-8">
+                <div class="card text-center text-black mb-3">
+                    <div class="card-header">
+                        <h5 class="card-title">Add Expense</h5>
+                    </div>
+                    <p>You do not have any expense history yet on your budget</p>
+                    <div class="mb-2">
+                        <a href="{% url 'create_transaction' %}" class="btn btn-warning w-50">Add Expense</a>
+                    </div>
+                </div>
+            </div>  
+        </main>
+     {% endif %} 
+{% endblock content %} 

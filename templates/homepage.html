@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static%}
+
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <h1>About Webapp</h1>
+            <p>
+                Hello there, welcome to the money tracker web home page.
+                This is a web app that helps you track your daily financies.
+                The motive for developing this website was due to the fact that a lot
+                or let me say more than enought people hardly save money, thereby
+                overspending more than they should spend out of their earnings or income daily
+                In order to reduce mdaiy expenses, this app was developed.
+                All you have to do is create a budget for the most import expenses,
+                There are default categories of expense to select from and 
+                your expenses would be tracked. 
+            </p>
+        </div>
+        
+        <div class="col-md-4">
+            <img class="developer-image" src="{% static '../images/me1.jpeg' %}" alt="profile image">
+        </div>
+    </div>
+{% endblock content %}

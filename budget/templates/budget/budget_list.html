@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static%}
+
+
+{% block content %}
+     {% if budgets %}
+    <main class="row justify-content-center">
+        <div class="card text-center text-black mb-3 col-md-6">
+            <div class="card-header">
+                <h5 class="card-title">Add Budget</h5>
+            </div>
+            <p>Click the button below to add budget(s)</p>
+            <div class="mb-2">
+                <a href="{% url 'create_budget' %}" class="btn btn-warning w-50">Add Budget</a>
+            </div>
+        </div>
+    </main>
+    <h1>My Budgets</h1>
+    <hr>
+   
+        {% for budget in budgets %}
+            <div class="row" style="margin-left:20px;">
+                <div class="col-md-3" style="float:right;">
+                    <div class="card text-center text-black mb-3">
+                        <div class="card-header">
+                            <h5 class="card-title">{{budget.budget_name}}</h5>
+                        </div>
+                        <p>{{ budget.budget_name }} <a href="{% url 'budget_detail' budget.pk %}">View Details</a></p>
+                        <div class="row justify-content-center mb-3">
+                            <div class="col-md-6" style="margin-left:none">
+                                <a href="{% url 'update_budget' budget.pk %}" class="btn btn-warning">Update Budget</a>
+                            </div>
+
+                            <div class="col-md-6" style="margin-left:-25px">
+                                <a href="{% url 'delete_budget' budget.pk %}" class="btn btn-danger">Delete Budget</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+    <main class="row justify-contetn-center" style="margin:60px 0px 0px 340px;">
+        <div class="col-md-8">
+            <div class="card text-center text-black mb-3">
+                <div class="card-header">
+                    <h5 class="card-title">Add Budget</h5>
+                </div>
+                <p>You do not have any budget yet on your profile, please create one.</p>
+                <div class="mb-2">
+                    <a href="{% url 'create_budget' %}" class="btn btn-warning w-50">Add Budget</a>
+                </div>
+            </div>
+        </div>  
+    </main>
+    {% endif %}
+{% endblock content %}
+

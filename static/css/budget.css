@@ -1,0 +1,32 @@
+body{
+    background:cadetblue;
+}
+
+
+/* user profile style*/
+.text-secondary{
+    text-transform: capitalize;
+    color:black !important;
+}
+
+.profile-pic{
+    max-width: 250px;
+    max-height: 250px;
+    border-radius: 100px;
+    align-self: center;
+}
+
+.developer-image{
+    max-width: 350px;
+    max-height: 400px;
+    border-radius: 50px; 
+}
+
+.trans-form{
+    width: 80%;
+    border: none;
+    border-radius: 10px;
+    margin-top: 15px;
+    text-align: center;
+    padding: 5px 0px 5px 0px;
+}

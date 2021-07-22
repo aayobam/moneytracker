@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+
+{% block content %} 
+    <div class="row">
+        <div class="col">
+            <div class="col-md">
+                <div class="card text-center text-black mb-3" id="total-orders">
+        
+                    <div class="card-header">
+                        <h5 class="card-title">Budget($)</h5>
+                    </div>
+        
+                    <div class="card-body">
+                        <h3 class="card-title">${{budget.amount}}</h3>
+                        <small class="">Added On: {{budget.created_at}}</small>
+                    </div>
+        
+                </div>
+            </div>
+            <a href="{% url 'create_budget' %}" class="btn btn-warning w-50" style="margin-left:100px;">Add Budget</a>
+        </div>
+        
+        <div class="col">
+            <div class="col-md">
+                <div class="card text-center text-black mb-3" id="orders-delivered">
+        
+                    <div class="card-header">
+                        <h5 class="card-title">Budget Balance($)</h5>
+                    </div>
+        
+                    <div class="card-body">
+                        <h3 class="card-title">${{budget_balance}}</h3>
+                        <small class="">As of:  {{transaction.created_at}}</small>
+                    </div>
+        
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="col-md">
+                <div class="card text-center text-black mb-3" id="orders-pending">
+        
+                    <div class="card-header">
+                        <h5 class="card-title">Total Expenses($)</h5>
+                    </div>
+        
+                    <div class="card-body">
+                        <h3 class="card-title">${{total_expenses}}</h3>
+                        <small class="">Last Transaction Date: {{transaction.created_at}}</small>
+                    </div>
+                </div>
+            </div>
+            <a href="{% url 'create_transaction' %}" class="btn btn-warning w-50" style="margin-left:120px">Add expenses</a>
+        </div>
+    </div>
+    {% if transactions %}
+    <br>
+    <h2>Transaction History</h2>
+    <div class="card card-body">
+        <table class="table table-sm">
+            <th class="">Category</th>
+            <th class="">Amount($)</th>
+            <th class="">Payment Mode</th>
+            <th class="">Transaction Type</th>
+            <th class="">Description</th>
+            <th class="">Transaction Date</th>
+            <th class="">Edit Expense</th>
+            <th class="">Remove Expense</th>
+            {% for transaction in transactions %}
+            <tr class="">
+                <td class="">{{ transaction.category }}</td>
+                <td class="">{{ transaction.amount }}</td>
+                <td class="">{{ transaction.payment_type }}</td>
+                <td class="">{{ transaction.transaction_type }}</td>
+                <td class="">{{ transaction.description }}</td>
+                <td class="">{{ transaction.transaction_date|date }}</td>
+                <td class=""><a href="{% url 'update_transaction' transaction.pk %}" class="btn btn-warning btn-sm">Update Expense</a></td>
+                <td class=""><a href="{% url 'delete_transaction' transaction.pk %}" class="btn btn-danger btn-sm">Delete Expense</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% else %}
+        <h2>No Transaction History</h2>
+     {% endif %}
+{% endblock content %} 

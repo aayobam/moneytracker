@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block head_title %} My Profile {% endblock %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block content %}
+   <div class="row content-section justify-content-center">
+      <div class="col-md-4 mt-1" style="">
+         <div class="card card-body ml-5">
+             <a href="{% url 'budget_list' %}" class="btn btn-warning">&#8592; Back to Dashborad</a>
+             <hr>
+             <h3 class="text-center">Profile Image</h3>
+             <hr>
+             <img class="profile-pic justify-content-center" src="{{ user.profile.profile_image.url }}" alt="profile image">
+         </div>
+     </div>
+
+      <div class="media col-md-6">
+         <div class="media-body text-capital" style="">
+            <legend class="border-bottom md-4">Profile Information</legend>
+            <p class="account-heading">Username: {{ request.user.username }}</p>
+            <p class="">Email: {{ request.user.email }}</p>
+            <p class="text-secondary">First name: {{ request.user.first_name }}</p>
+            <p class="text-secondary">Last name: {{ request.user.last_name }}</p>
+            <form action="" method="POST" enctype="multipart/form-data">
+               <legend class="border-bottom md-4">Update Information</legend>
+              
+               <fieldset class="form-group mb-2">
+                     {% csrf_token %}
+                     {{user_update_form|crispy}}
+                     {{user_update_form.errors|crispy}}
+               </fieldset>
+   
+                  {{image_update_form|crispy}}
+                  {{image_update_form.errors|crispy}}
+               <div class="form-group pt-2 pb-2">
+                     <input type="submit" value="Update" class="btn btn-outline-info">
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+{% endblock content %}

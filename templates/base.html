@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="{% static 'bootstrap5/css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/budget.css' %}" type="text/css">
+    <title>Money Tracker</title>
+</head>
+
+
+<body>
+    <header class="site-header" style="margin-bottom: 1em;">
+        <nav class="navbar navbar-expand-md navbar-light navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand mr-5" href="{% url 'homepage' %}">Money Tracker</a>
+        
+                <button class="navbar-toggler " type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                {% if user.is_authenticated %}
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'budget_list' %}">Home</a></li>
+                        </ul>
+                    </div>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'account-profile' user.pk %}">Profile</a>
+                            </li>
+                            <li class="mt-2 text-white">
+                                <p>Welcome, {{request.user.first_name}}</p>
+                            </li>
+                            <li style="margin-left:10px;">
+                                <form action="{% url 'account-logout' %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="submit" value="Log Out" class="btn btn-outline-info log-out">
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                {% else %}
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'budget_list' %}">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'account-login' %}">Login</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'account-signup' %}">Register</a></li>
+                        </ul>
+                    </div>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{message.tags}}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+
+
+    {% block content %} {% endblock %}
+    <script src="{% static 'bootstrap5/js/bootstrap.min.js' %}"></script>    
+</body>
+
+</html>
