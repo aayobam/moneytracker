@@ -3,11 +3,11 @@
 
 
 {% block content %} 
-    <div class="row justify-content-center">
+    <div class="row justify-content-center content-margin">
         <div class="col-md">
             <div class="col-md">
 
-                <div class="card text-center text-black mb-3">
+                <div class="card text-center text-green mb-3">
                     <div class="card-header">
                         <h5 class="card-title">Budget(₦)</h5>
                     </div>
@@ -67,8 +67,8 @@
     </div>
     {% if transactions %}
     <br>
-    <h2>Transaction History</h2>
-    <div class="card card-body">
+    <h2 style="margin-left:10px;">Transaction History</h2>
+    <div class="card card-body" style="margin-left:10px; margin-right:10px;">
         <table class="table table-sm">
             <th class="">Category</th>
             <th class="">Amount(₦)</th>
@@ -78,7 +78,7 @@
             <th class="">Transaction Date</th>
             <th class="">Edit Expense</th>
             <th class="">Remove Expense</th>
-            {% for transaction in transactions %}
+            {% for transaction in page_obj %}
             <tr class="">
                 <td class="">{{ transaction.category }}</td>
                 <td class="">-₦{{ transaction.amount }}</td>
@@ -90,6 +90,21 @@
                 <td class=""><a href="{% url 'delete_transaction' transaction.pk %}" class="btn btn-danger btn-sm">Delete Expense</a></td>
             </tr>
             {% endfor %}
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                    <a href="?page=1" class="btn btn-outline-info">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-info">previous</a>
+                    {% endif %}
+                    <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
+                    {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-info">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-info">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
         </table>
     </div>
     {% else %}

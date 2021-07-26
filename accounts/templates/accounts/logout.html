@@ -1,13 +1,17 @@
-{% extends 'base2.html'%}
+{% extends 'base.html' %}
 {% block head_title %} User Logout {% endblock %}
 {% load crispy_forms_tags %}
 
 
 {% block content %}
-    <h2>You have been logged out</h2>
-    <div class="border-top log-out">
-        <small class="text-muted">
-            <a href="{% url 'account-login' %}">Log In Again</a>
-        </small>
-    </div>
+   <main class="container">
+        <div class="row justify-content-center mt-5">
+            <h2>You have been logged out</h2>
+            <div class="col-md">
+                <small class="text-muted" style="color:white;">
+                    <a href="{% url 'account-login' %}">Log In Again</a>
+                </small>
+            </div>
+        </div>
+   </main>
 {% endblock content %}

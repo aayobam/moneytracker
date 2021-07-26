@@ -6,6 +6,7 @@ from .models import Budget,Transaction
 from django.views.generic import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator
 
 
 
@@ -24,8 +25,10 @@ def budget_list_view(request):
 def budget_detail_view(request, pk):
     template_name = "budget/budget_detail.html"
     budget = get_object_or_404(Budget, pk=pk)
-    #transactions = budget.transactions.filter(user=request.user)
-    transactions = Transaction.objects.filter(user=request.user)
+    transactions = Transaction.objects.filter(user=request.user, budget__id=budget.pk)
+    paginator = Paginator(transactions, 3)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     budget_balance = 0
     total_expenses = 0
     transaction = 0
@@ -38,7 +41,8 @@ def budget_detail_view(request, pk):
         "transaction":transaction,
         "transactions":transactions,
         "total_expenses":total_expenses,
-        "budget_balance":budget_balance
+        "budget_balance":budget_balance,
+        "page_obj":page_obj
     }
     return render(request,template_name, context)
 

@@ -17,8 +17,10 @@ def signup_view(request):
     if request.method == 'POST':
         signup_form = UserRegister(request.POST)
         if signup_form.is_valid():
-            user = signup_form.save(commit=False)
-            user.save()
+            users = signup_form.save(commit=False)
+            users.save()
+            for user in User.objects.all():
+                Profile.objects.get_or_create(user=user)
             messages.success(request, f"Your account has successfully been created, you can now log in".capitalize())
             return redirect('account-login')
         else:
@@ -41,7 +43,7 @@ def login_view(request):
             user = login_form.get_user()
             login(request, user)
             messages.success(request, f"welcome {user}, you are now logged in".capitalize())
-            return redirect("homepage")
+            return redirect("budget_list")
         else:
             messages.warning(request, f"Invalid username or password")
             return redirect('account-login')
@@ -55,9 +57,9 @@ def login_view(request):
 # user logout
 def logout_view(request):
     if request.method == 'POST':
+        template_name= "accounts/logout.html"
         logout(request)
-        messages.success(request, f"You have successfully logged out")
-        return redirect("account-login")
+        return render(request, template_name)
 
 
 # Update Profile

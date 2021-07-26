@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
 {% load crispy_forms_tags %}
 {% block head_title %} User Registeration {% endblock %}
 
@@ -8,21 +8,39 @@
 {% block content %}
 
     <main role="main" class="container">
-        <div class="row justify-content-center mt-5">
-            <div class="col-md-6">
+        <div class="row justify-content-center mt-2 add-budget-margin" style="margin-bottom:5rem;">
+            <div class="col-md-6 card">
+               <div style="padding: 100px 50px">
+                    <h1>About Webapp</h1>
+                    <p>
+                        Hello there, welcome to the money tracker web home page.
+                        This is a web app that helps you track your daily expenses.
+                        The motive for developing this website was due to the fact that a lot
+                        or let's say enough people hardly save money, thereby
+                        overspending more than they should be spending out of their earnings or daily income.
+                        In order to reduce amount of money spent daily on expenses, you should consider using this app.
+                        All you have to do is create a budget for the most important expenses.
+                        There are default categories of expense to select from and 
+                        your expenses would be tracked. 
+                    </p>
+               </div>
+            </div>
+            <div class="col-md-6 card">
                <form action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <legend class="border-bottom">Join Today</legend>
+                    <legend class="border-bottom text-center mt-3">Register to gain Access</legend>
                         {{ signup_form|crispy}}
                         {{form.errors}}
                     <div class="form-group pt-2 pb-2 col-md-3">
                         <input type="submit" value="Sign Up" class="btn btn-outline-info">
                     </div>
-                    <small class="text-muted mt-4 col-md-9">
-                        Already have an Account ? <a class="ml-2" href="{% url 'account-login' %}">Sign In</a>
+                    <legend class="border-bottom"></legend>
+                    <small class="text-muted mt-4">
+                        <p>Already have an Account ? <a href="{% url 'account-login' %}">Sign In</a></p>
                     </small>
                 </form>
             </div>
         </div>
     </main>
+    
 {% endblock content %}

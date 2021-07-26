@@ -123,8 +123,7 @@ STATICFILES_DIRS = (
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 
 
-# these are the email attributes to be used in the prod environment
-EMAIL_BACKEND = "django.core.mail.backends.EmailBackend"
+EMAIL_BACKEND = env('EMAIL_BACKEND')
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587

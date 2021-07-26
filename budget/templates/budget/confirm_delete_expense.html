@@ -4,7 +4,7 @@
 
 
 {% block content %}
-    <main class="row justify-contetn-center" style="margin:100px 0px 0px 320px;">
+    <main class="row justify-contetn-center" style="margin:100px 0px 0px 320px; margin-bottom: 180px">
         <div class="col-md-8">
             <div class="card text-center text-black mb-3">
                 <div class="card-header">
@@ -15,7 +15,7 @@
                     {% csrf_token %}
                     <div class="mt-3 mb-3">
                         <button type="submit" class="btn btn-danger">Delete Transaction</button>
-                        <a href="{% url 'budget_detail' user.budget.pk %}" class="btn btn-secondary">Cancel Transaction</a>
+                        <a href="{% url 'budget_detail' transaction.budget.pk %}" class="btn btn-secondary">Cancel Transaction</a>
                     </div>
                 </form>
             </div>

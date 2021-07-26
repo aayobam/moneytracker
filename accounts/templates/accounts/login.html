@@ -4,25 +4,24 @@
 
 
 {% block content %}
-    <main role="main" class="container">
-        <div class="row justify-content-center mt-5">
-            <div class="col-md-6">
+    <main role="main" class="container mt-4">
+        <div class="row justify-content-center add-budget-margin">
+            <div class="col-md-6 card text-center mt-5">
                 <form action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <legend class="border-bottom md-4">User Login</legend>
+                    <legend class="mt-3">User Login</legend>
                     
                         {{ login_form|crispy }}
                         {{form.errors}}
                     <div class="form-group pt-2 pb-2 col-md-3">
-                        <input type="submit" value="Sign in" class="btn btn-outline-info">
+                        <input type="submit" value="Sign in" class="btn btn-outline-info w-100">
                     </div>
-                    <div class="border-top pt-3">
+                    <legend class="border-bottom"></legend>
                     <small class="text-muted">
-                        Need an Account ? <a class="ml-2" href="{% url 'account-signup' %}">Sign Up</a>
+                        <p>Need an Account ? <a class="ml-2" href="{% url 'account-signup' %}">Sign Up</a>
+                        or  <a class="" href="{% url 'reset_password' %}">Reset Password</a></p>
                     </small>
-                    <small class="text-muted">
-                        or  <a class="ml-2" href="{% url 'reset_password' %}">Reset Password</a>
-                    </small>
+                    
                 </form>
             </div>
         </div>
