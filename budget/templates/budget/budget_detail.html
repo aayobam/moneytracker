@@ -19,8 +19,8 @@
                 </div>
 
             </div>
-             <div style="">
-                <a href="{% url 'budget_list' %}" class="btn btn-warning w-100">Back to Home</a>
+             <div class="">
+                <a href="{% url 'budget_list' %}" class="btn btn-warning w-100 dashboard-btn">Dashboard</a>
             </div>
         </div>
        
@@ -68,7 +68,7 @@
     {% if transactions %}
     <br>
     <h2 style="margin-left:10px;">Transaction History</h2>
-    <div class="card card-body" style="margin-left:10px; margin-right:10px;">
+    <div class="card card-body budget-detail-margin" style="margin-left:10px; margin-right:10px; margin-bottom:7rem;">
         <table class="table table-sm">
             <th class="">Category</th>
             <th class="">Amount(₦)</th>

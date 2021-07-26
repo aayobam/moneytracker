@@ -26,7 +26,7 @@ def budget_detail_view(request, pk):
     template_name = "budget/budget_detail.html"
     budget = get_object_or_404(Budget, pk=pk)
     transactions = Transaction.objects.filter(user=request.user, budget__id=budget.pk)
-    paginator = Paginator(transactions, 3)
+    paginator = Paginator(transactions, 2)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     budget_balance = 0

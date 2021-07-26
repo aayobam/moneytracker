@@ -1,20 +1,21 @@
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
 {% block head_title %} My Profile {% endblock %}
 {% load crispy_forms_tags %}
 {% load static %}
 
 
 {% block content %}
-   <div class="row content-section justify-content-center">
-      <div class="col-md-4 mt-1" style="">
-         <div class="card card-body ml-5">
-             <a href="{% url 'budget_list' %}" class="btn btn-warning">&#8592; Back to Dashborad</a>
-             <hr>
-             <h3 class="text-center">Profile Image</h3>
-             <hr>
-             <img class="profile-pic justify-content-center" src="{{ user.profile.profile_image.url }}" alt="profile image">
-         </div>
-     </div>
+   <main class="container">
+      <div class="row justify-content-center add-budget-margin" style="margin-bottom:5rem;">
+         <div class="col-md-4 mt-1" style="">
+            <div class="card card-body">
+               <a href="{% url 'budget_list' %}" class="btn btn-warning">&#8592; Back to Dashborad</a>
+               <hr>
+               <h3 class="text-center">Profile Image</h3>
+               <hr>
+               <img class="profile-pic justify-content-center" src="{{ user.profile.profile_image.url }}" alt="profile image">
+            </div>
+      </div>
 
       <div class="media col-md-6">
          <div class="media-body text-capital" style="">
@@ -25,7 +26,7 @@
             <p class="text-secondary">Last name: {{ request.user.last_name }}</p>
             <form action="" method="POST" enctype="multipart/form-data">
                <legend class="border-bottom md-4">Update Information</legend>
-              
+            
                <fieldset class="form-group mb-2">
                      {% csrf_token %}
                      {{user_update_form|crispy}}
@@ -40,5 +41,5 @@
             </form>
          </div>
       </div>
-   </div>
-{% endblock content %}
+   </main>
+{% endblock %}

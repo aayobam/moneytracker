@@ -20,29 +20,31 @@
        </div>
     </main>
     <hr>
-    <h1 class="text-center">My Budgets</h1>
-        <div class="row justify-content-center content-margin">
-            {% for budget in budgets %}
-            <div class="col-md-4">
-                <div class="card text-center text-black mb-3">
-                    <div class="card-header">
-                        <h5 class="card-title">{{budget.budget_name}}</h5>
-                    </div>
-                    <p>{{ budget.budget_name }} : ₦{{budget.amount}}</p>
-                    <a href="{% url 'budget_detail' budget.pk %}" style="color:orange;">View Details</a>
-                    <div class="row justify-content-center mb-3">
-                        <div class="col-md-6 mt-2">
-                            <a href="{% url 'update_budget' budget.pk %}" class="btn btn-warning">Update Budget</a>
+       <main class="container">
+            <h1 class="text-center">My Budgets</h1>
+            <div class="row justify-content-center add-budget-margin budget-list-margin">
+                {% for budget in budgets %}
+                <div class="col-md-4">
+                    <div class="card text-center text-black mb-3">
+                        <div class="card-header">
+                            <h5 class="card-title">{{budget.budget_name}}</h5>
                         </div>
+                        <p>{{ budget.budget_name }} : ₦{{budget.amount}}</p>
+                        <a href="{% url 'budget_detail' budget.pk %}" style="color:orange;">View Details</a>
+                        <div class="row justify-content-center mb-3">
+                            <div class="col-md-6 mt-2">
+                                <a href="{% url 'update_budget' budget.pk %}" class="btn btn-warning">Update Budget</a>
+                            </div>
 
-                        <div class="col-md-6 mt-2">
-                            <a href="{% url 'delete_budget' budget.pk %}" class="btn btn-danger">Delete Budget</a>
+                            <div class="col-md-6 mt-2">
+                                <a href="{% url 'delete_budget' budget.pk %}" class="btn btn-danger">Delete Budget</a>
+                            </div>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
-        </div>
+       </main>
     {% else %}
     <main class="container mb-5" style="margin-top: 6rem;">
         <div class="row justify-content-center add-budget-margin">

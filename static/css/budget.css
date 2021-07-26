@@ -37,12 +37,65 @@ body{
 .add-budget-margin{
     margin-left:0px;
 }
+
+.budget-list-responsive{
+    margin-left:0px;
+}
+
+.budget-detail-responsive{
+    margin-left:0px;
+}
+
+.dashboard-btn{
+    margin-left:0px;
+}
+
+
 @media only screen and (max-width:763px) {
     .add-budget-margin{
         margin-left: 16px;
         margin-right: 10px;
     }
 }
+
+
+@media only screen and (max-width:767px) {
+    .budget-list-margin{
+        margin-left: 16px;
+        margin-right: 10px;
+        margin-bottom: 7rem;
+    }
+}
+
+@media only screen and (max-width:767px) {
+    .budget-detail-margin{
+        margin-left: 16px;
+        margin-right: 10px;
+        margin-bottom: 7rem;
+    }
+}
+
+@media only screen and (max-width:524px) {
+    .budget-detail-margin{
+        margin-left: 16px;
+        margin-right: 10px;
+        margin-bottom: 9rem;
+    }
+}
+
+@media only screen and (max-width:767px) {
+    .dashboard-btn{
+        margin-bottom: 1rem;
+    }
+}
+
+@media only screen and (max-width:524px) {
+    .dashboard-btn{
+        margin-bottom: 1rem;
+    }
+}
+
+
 
 
 /* user profile style*/
