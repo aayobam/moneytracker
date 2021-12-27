@@ -10,14 +10,13 @@
                 <h2 class="text-center mt-3 mb-0">Create an expense</h2>
                 <form action="" method="POST">
                     {% csrf_token %}
-                    {{budget.amount}}
                     {{ transaction_form|crispy }}
                     <div class="row ">
                         <div class="col-md-6">
-                            <button type="submit" class="btn btn-danger mt-3 w-100">Create Transaction</button>
+                            <button type="submit" class="btn btn-danger mt-3 w-100">Save Expense</button>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <a href="{% url 'budget_detail' budget.pk %}" class="btn btn-secondary mt-3 w-100">Cancel Transaction</a>
+                            <a href="{% url 'budget_list' %}" class="btn btn-secondary mt-3 w-100">Cancel Transaction</a>
                         </div>
                     </div>
                 </form>

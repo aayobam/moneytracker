@@ -23,9 +23,10 @@ def budget_list_view(request):
 # user is able to view details about the budget(s) inlcuding its transaction or expense histories.
 @login_required(login_url="account-login")
 def budget_detail_view(request, pk):
+    user = request.user
     template_name = "budget/budget_detail.html"
     budget = get_object_or_404(Budget, pk=pk)
-    transactions = Transaction.objects.filter(user=request.user, budget__id=budget.pk)
+    transactions = Transaction.objects.filter(user=user, budget=budget)
     paginator = Paginator(transactions, 2)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -100,21 +101,23 @@ def delete_budget(request,pk):
 
 # User is able to create expense transactions
 @login_required(login_url="account-login")
-def create_transaction(request):
+def create_transaction(request, pk):
+    budget = get_object_or_404(Budget, pk=pk)
     template_name = "budget/transaction_form.html"
     if request.method == 'POST':
         transaction_form = TransactionForm(request.POST)
         if transaction_form.is_valid():
             form = transaction_form.save(commit=False)
             form.user = request.user
+            form.budget = budget
             form.save()
             messages.success(request, "Expense Created")
-            return redirect("budget_list")
+            return redirect("budget_detail", pk)
         else:
             return False
     else:
         transaction_form = TransactionForm()
-    context = {"transaction_form":transaction_form}
+    context = {"transaction_form":transaction_form, "budget":budget}
     return render(request, template_name, context)
 
 
@@ -132,7 +135,7 @@ class DeleteTransactionView(LoginRequiredMixin, DeleteView):
 # User is able to update expense transaction should in case there is a mistake during creation.
 @login_required(login_url="account-login")
 def update_expense(request, pk):
-    template_name = "budget/transaction_form.html"
+    template_name = "budget/update_expense.html"
     transaction = get_object_or_404(Transaction, pk=pk)
     transaction_form = TransactionForm(request.POST, instance=transaction)
     if request.method == 'POST':
@@ -140,9 +143,9 @@ def update_expense(request, pk):
             transaction_form.save()
             messages.success(request, "Expense Updated")
             return redirect("budget_list")
-        else:
-            return False
+        messages.error(request, "unable to update expense, please try again")
+        return redirect("update_transaction", pk)
     else:
         transaction_form = TransactionForm(instance=transaction)
-    context = {"transaction_form":transaction_form}
+    context = {"transaction_form":transaction_form, "transaction":transaction}
     return render(request, template_name, context)

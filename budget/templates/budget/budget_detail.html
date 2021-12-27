@@ -59,8 +59,8 @@
                         <small class="">Last Transaction Date: {{transactions.created_at}}</small>
                     </div>
                 </div>
-                <div style="">
-                    <a href="{% url 'create_transaction' %}" class="btn btn-warning w-100">Add expenses</a>
+                <div>
+                    <a href="{% url 'create_transaction' budget.pk %}" class="btn btn-warning w-100">Add expenses</a>
                 </div>
             </div>
         </div>
@@ -116,7 +116,7 @@
                     </div>
                     <p>You do not have any expense history yet on your budget</p>
                     <div class="mb-2">
-                        <a href="{% url 'create_transaction' %}" class="btn btn-warning w-50">Add Expense</a>
+                        <a href="{% url 'create_transaction' budget.pk %}" class="btn btn-warning w-50">Add Expense</a>
                     </div>
                 </div>
             </div>  
