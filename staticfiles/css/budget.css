@@ -1,0 +1,152 @@
+body{
+    background: chocolate;
+    margin:0px auto;
+}
+
+/* social media icon style*/
+.social-icon .fab{
+    font-size: 40px;
+    margin: 0px 10px;
+}
+
+.social-icon .fa-twitter{
+    color:rgba(0, 0, 255, 0.582);
+}
+
+.social-icon .fa-github-alt{
+    color:rgb(0, 0, 0);
+}
+
+.social-icon .fa-twitter:hover{
+    color:rgb(0, 0, 255);
+}
+
+.social-icon .fa-github-alt:hover{
+    color:rgba(0, 0, 0, 0.856);
+}
+
+.social-icon .fa-linkedin-in:hover{
+    color:rgba(0, 0, 255, 0.644);
+}
+
+/* budgets content style*/
+.content-margin{
+    margin:10px 0px 10px 0px !important;
+}
+
+.add-budget-margin{
+    margin-left:0px;
+}
+
+.budget-list-responsive{
+    margin-left:0px;
+}
+
+.budget-detail-responsive{
+    margin-left:0px;
+}
+
+.dashboard-btn{
+    margin-left:0px;
+}
+
+
+@media only screen and (max-width:763px) {
+    .add-budget-margin{
+        margin-left: 16px;
+        margin-right: 10px;
+    }
+}
+
+
+@media only screen and (max-width:767px) {
+    .budget-list-margin{
+        margin-left: 16px;
+        margin-right: 10px;
+        margin-bottom: 7rem;
+    }
+}
+
+@media only screen and (max-width:767px) {
+    .budget-detail-margin{
+        margin-left: 16px;
+        margin-right: 10px;
+        margin-bottom: 7rem;
+    }
+}
+
+@media only screen and (max-width:524px) {
+    .budget-detail-margin{
+        margin-left: 16px;
+        margin-right: 10px;
+        margin-bottom: 9rem;
+    }
+}
+
+@media only screen and (max-width:767px) {
+    .dashboard-btn{
+        margin-bottom: 1rem;
+    }
+}
+
+@media only screen and (max-width:524px) {
+    .dashboard-btn{
+        margin-bottom: 1rem;
+    }
+}
+
+
+
+
+/* user profile style*/
+.text-secondary{
+    text-transform: capitalize;
+    color:black !important;
+}
+
+.profile-pic{
+    max-width: 250px;
+    max-height: 250px;
+    border-radius: 100px;
+    align-self: center;
+}
+
+/* about page style */
+.developer-image{
+    width: 100%;
+    height: auto;
+    max-width: 350px;
+    max-height: 400px;
+    border-radius: 30px; 
+}
+
+@media only screen and (max-width:767px){
+    .developer-image{
+        margin-bottom: 20px;
+        max-width: 350px;
+        max-height: 400px;
+        align-self: center;
+    }
+}
+
+.trans-form{
+    width: 80%;
+    border: none;
+    border-radius: 10px;
+    margin-top: 15px;
+    text-align: center;
+    padding: 5px 0px 5px 0px;
+}
+
+
+/* links styling */
+a{
+    color: blue;
+}
+a:hover{
+    color: burlywood;
+}
+.text-muted,small{
+    color: black !important;
+    text-align: center;
+}
